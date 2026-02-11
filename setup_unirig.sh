@@ -61,12 +61,12 @@ echo "[5/7] Installing prebuilt wheels..."
 pip install https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.0.8/flash_attn-2.6.3+cu124torch2.4-cp311-cp311-linux_x86_64.whl \
     --no-deps --break-system-packages -q
 echo "  flash_attn ✓"
-pip install spconv-cu120 --break-system-packages -q
-echo "  spconv ✓"
+pip install spconv-cu124==2.3.8 --break-system-packages -q
+echo "  spconv-cu124 ✓"
 pip install torch_scatter torch_cluster \
     -f https://data.pyg.org/whl/torch-2.4.0+cu124.html --break-system-packages -q
 echo "  torch_scatter + torch_cluster ✓"
-pip install PyOpenGL==3.1.7 PyOpenGL-accelerate==3.1.7 --break-system-packages -q 2>/dev/null || true
+pip install PyOpenGL==3.1.7 --break-system-packages -q
 echo "  PyOpenGL ✓"
 pip install bpy==4.2.0 --break-system-packages -q
 echo "  bpy ✓"
