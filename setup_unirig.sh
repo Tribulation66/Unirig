@@ -52,7 +52,6 @@ numpy==1.26.4
 CONSTRAINTS
 cp requirements.txt /tmp/requirements_safe.txt
 sed -i '/flash_attn/d' /tmp/requirements_safe.txt
-sed -i '/bpy/d' /tmp/requirements_safe.txt
 pip install -r /tmp/requirements_safe.txt -c /tmp/torch_constraints.txt \
     --ignore-installed blinker --break-system-packages -q 2>&1 | tail -3
 echo "  Requirements ✓"
@@ -69,6 +68,8 @@ pip install torch_scatter torch_cluster \
 echo "  torch_scatter + torch_cluster ✓"
 pip install PyOpenGL==3.1.7 PyOpenGL-accelerate==3.1.7 --break-system-packages -q 2>/dev/null || true
 echo "  PyOpenGL ✓"
+pip install bpy==4.2.0 --break-system-packages -q
+echo "  bpy ✓"
 
 echo ""
 echo "[6/7] Pinning numpy..."
@@ -81,7 +82,7 @@ export PYOPENGL_PLATFORM=egl
 python3 -c '
 import torch
 assert torch.__version__ == "2.4.1+cu124", f"torch wrong: {torch.__version__}"
-import spconv; import torch_scatter; import torch_cluster; import flash_attn
+import spconv; import torch_scatter; import torch_cluster; import flash_attn; import bpy
 print("  torch:", torch.__version__, "✓")
 print("  All imports ✓")
 '
